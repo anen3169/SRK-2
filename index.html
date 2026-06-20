@@ -1,210 +1,147 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ŞRK-2</title>
+<title>ŞRK-3 ULTRA</title>
 
 <style>
 body{
     margin:0;
     font-family:Arial;
-    background: radial-gradient(circle at top, #060b1a, #000);
+    background: radial-gradient(circle at top, #020617, #000);
     color:white;
 }
-
 header{
     text-align:center;
-    padding:18px;
-    font-size:24px;
+    padding:20px;
+    font-size:28px;
     color:#00f7ff;
-    text-shadow:0 0 15px #00f7ff;
+    text-shadow:0 0 20px #00f7ff;
 }
-
-.container{max-width:520px;margin:auto;padding:10px;}
-
+.container{max-width:750px;margin:auto;padding:15px}
 .card{
-    background:rgba(255,255,255,0.05);
-    padding:15px;
-    border-radius:15px;
+    background:rgba(255,255,255,0.06);
+    padding:16px;
+    border-radius:14px;
     margin:10px 0;
 }
-
 input,select,button{
     width:100%;
     padding:12px;
     margin-top:8px;
-    border-radius:10px;
     border:none;
-    font-size:15px;
-}
-
-input,select{background:#111;color:white;}
-
-button{
-    background:#00f7ff;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-pre{
-    white-space:pre-wrap;
-    background:#111;
-    padding:15px;
     border-radius:10px;
-    min-height:240px;
 }
+input,select{background:#111;color:white}
+button{background:linear-gradient(90deg,#00f7ff,#0066ff);font-weight:bold;cursor:pointer}
+pre{white-space:pre-wrap;background:#0b0b0b;padding:14px;border-radius:10px;min-height:320px}
 </style>
 </head>
 
 <body>
-<header>🎵 ŞRK-2</header>
+
+<header>🎵 ŞRK-3 SONG ENGINE</header>
 
 <div class="container">
 
 <div class="card">
-<input id="songName" placeholder="Şarkı adı">
-<select id="mood">
-<option value="fun">☺️eğlence</option>
+<input id="inputField" placeholder="Şarkı adı">
+<select id="mode">
+<option value="love">💔 Aşk</option>
 <option value="sad">😢 Üzüntü</option>
-<option value="love">💔 aşk</option>
+<option value="fun">😊 Eğlence</option>
+<option value="night">🌙 Gece</option>
+<option value="rap">🎤 Rap</option>
+<option value="happy">🌈 Mutlu</option>
 </select>
-
-<button onclick="generate()">Şarkı üret</button>
+<button onclick="generate()">Üret</button>
 </div>
 
 <div class="card">
-<pre id="out">Hazırlanıyor...</pre>
+<pre id="out">Hazır...</pre>
 </div>
 
 </div>
 
 <script>
 
-/* =========================
-   📚 100+ VOCAB (GENİŞLETİLDİ)
-   ========================= */
-
 const vocab = {
-    fun: {
-        nouns: [
-            "sokak","ışık","ritim","şehir","kalabalık","renk","gece","parti",
-            "dans","müzik","sahne","enerji","kahkaha","oyun","festival","kalp",
-            "cadde","araba","neon","yıldız","güneş","bulut"
-        ],
-        verbs: [
-            "zıplar","akar","döner","patlar","güler","parlar","koşar","çalar",
-            "uyanır","dans eder","bağırır","titreşir","yanar","uçuşur"
-        ],
-        adj: [
-            "hızlı","renkli","çılgın","canlı","parlak","ateşli","coşkulu",
-            "delice","sıcak","parıltılı","enerjik"
-        ]
-    },
-
-    sad: {
-        nouns: [
-            "yağmur","gölge","sessizlik","kalp","oda","rüzgar","hatıra",
-            "gece","kırık cam","yol","şehir","gözyaşı","karanlık","duvar",
-            "fotoğraf","soğuk sokak","kayıp"
-        ],
-        verbs: [
-            "ağlar","söner","susar","kaybolur","üşür","dağılır","kırılır",
-            "unutur","yanar","bekler","yok olur","solar"
-        ],
-        adj: [
-            "soğuk","boş","kırık","sessiz","karanlık","yorgun","uzak",
-            "soluk","derin","acılı"
-        ]
-    },
-
-    love: {
-        nouns: [
-            "kalp","aşk","bakış","gece","rüya","özlem","dokunuş",
-            "göz","ses","nefes","yıldız","gökyüzü","ruh","hayal",
-            "ten","şarkı","deniz","ışık","ateş"
-        ],
-        verbs: [
-            "yanar","fısıldar","özler","bekler","çarpılır","arar",
-            "sarar","dokunur","titrer","çağırır","bağlanır"
-        ],
-        adj: [
-            "derin","sonsuz","sıcak","kayıp","hassas","büyülü",
-            "sessiz","gizli","yoğun","romantik"
-        ]
-    }
+love:{
+nouns:["renkli","gece","kalp","rüya","ışık","deniz","zaman","enerji"],
+verbs:["koşar","parlar","döner","akar","güler","söner","uçurur"],
+adj:["güzel","hızlı","derin","sessiz","büyülü","çılgın"]
+},
+sad:{
+nouns:["yağmur","gölge","sessizlik","kırık","sis","boşluk","yalnızlık"],
+verbs:["ağlar","söner","kaybolur","üşür","susar","kırılır","dağılır"],
+adj:["soğuk","kırık","sessiz","yorgun","karanlık"]
+},
+fun:{
+nouns:["sokak","ışık","ritim","şehir","parti","dans","enerji"],
+verbs:["zıplar","akar","döner","patlar","güler","coşar"],
+adj:["hızlı","renkli","çılgın","canlı","enerjik"]
+},
+night:{
+nouns:["ay","yıldız","gece","gökyüzü","rüya","gölge"],
+verbs:["parlar","süzülür","akar","kaybolur","bekler"],
+adj:["sessiz","mistik","karanlık","büyülü"]
+},
+rap:{
+nouns:["flow","beat","mikrofon","sahne","ritim"],
+verbs:["akar","patlar","vurur","yükselir","hızlanır"],
+adj:["sert","hızlı","güçlü","ateşli"]
+},
+happy:{
+nouns:["güneş","umut","kahkaha","ışık","neşe","mutluluk"],
+verbs:["güler","parlar","coşar","büyür","koşar"],
+adj:["parlak","mutlu","neşeli","enerjik"]
+}
 };
 
-/* =========================
-   🧠 MEMORY SYSTEM
-   ========================= */
-
-let memory = [];
-
 function pick(arr){
-    return arr[Math.floor(Math.random()*arr.length)];
+return arr[Math.floor(Math.random()*arr.length)];
 }
 
-function smartPick(arr){
-    let filtered = arr.filter(x => !memory.includes(x));
-    if(filtered.length === 0){
-        memory = [];
-        filtered = arr;
-    }
-
-    let word = pick(filtered);
-    memory.push(word);
-    if(memory.length > 15) memory.shift();
-
-    return word;
+function verse1(d){
+return `${pick(d.nouns)} içinde ${pick(d.verbs)} bir hikaye\n${pick(d.nouns)} ${pick(d.adj)} gibi üzerimize çöker\nkalbim ${pick(d.verbs)} senin için`;
 }
 
-/* =========================
-   🎤 LINE ENGINE
-   ========================= */
-
-function line(d){
-    let n = smartPick(d.nouns);
-    let v = smartPick(d.verbs);
-    let a = smartPick(d.adj);
-
-    return `${n} içinde ${v} bir ${a} his`;
+function chorus(name,d){
+return `${name}, ${name}\niçimde ${pick(d.nouns)} var\nbu dünya ${pick(d.verbs)} ama sen yoksun`;
 }
 
-/* =========================
-   🎤 GENERATOR ŞRK-2
-   ========================= */
+function verse2(d){
+return `${pick(d.nouns)} sokaklarda seni ararım\nrüzgar ${pick(d.verbs)} adını taşır\nben ${pick(d.nouns)} içinde kaybolurum`;
+}
+
+function outro(name,d){
+return `${name}...\nher şey artık ${pick(d.nouns)} bir hikaye`;
+}
 
 function generate(){
 
-    let name = document.getElementById("songName").value || "İsimsiz Şarkı";
-    let mood = document.getElementById("mood").value;
+let name=document.getElementById("inputField").value||"İsimsiz Şarkı";
+let m=document.getElementById("mode").value;
+let d=vocab[m];
 
-    let d = vocab[mood];
-
-    let song =
+let song =
 `🎵 ${name} 🎵
 
 [Verse 1]
-${line(d)}
-${line(d)}
-kalbim ${smartPick(d.verbs)} senin için
+${verse1(d)}
 
 [Chorus]
-${name}, ${name}
-içimde ${smartPick(d.nouns)} büyüyor
-bu dünya ${smartPick(d.verbs)} ama sen yoksun
+${chorus(name,d)}
 
 [Verse 2]
-${line(d)}
-${line(d)}
-ben ${smartPick(d.nouns)} içinde kaybolurum
+${verse2(d)}
 
 [Outro]
-${name}...
-her şey ${smartPick(d.adj)} bir hatıra`;
+${outro(name,d)}
+`;
 
-    document.getElementById("out").innerText = song;
+document.getElementById("out").textContent=song;
 }
 
 </script>
